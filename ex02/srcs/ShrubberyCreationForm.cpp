@@ -1,13 +1,8 @@
 #include "../includes/ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target){
-    if (_grade_sign < 1 || _grade_exec < 1)
-        throw ShrubberyCreationForm::GradeTooHighException();
-    if (_grade_sign > 145 || _grade_exec > 137)
-        throw ShrubberyCreationForm::GradeTooLowException();
-}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("ShrubberyCreationForm", 137, 145), _target(target){}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src) : _grade_sign(src._grade_sign), _grade_exec(src._grade_exec){}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src) : AForm(src), _target(src._target){}
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& src){
     return *this;
@@ -15,11 +10,31 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){}
 
-const char *ShrubberyCreationForm::GradeTooHighException:: what() const throw(){
-    return "[ShrubberyCreationForm: Grade is too high]";
-}
-
-const char *ShrubberyCreationForm::GradeTooLowException::what() const throw(){
-    return "[ShrubberyCreationForm: Grade is too low]";
+void	ShrubberyCreationForm::executeAction() const
+{
+	std::fstream	out(this->getName().append("_shrubbery").c_str());
+	for (int i = 0; i < 5; i++)
+		{
+			out <<
+			"         v" << std::endl <<
+			"        >X<" << std::endl <<
+			"         A" << std::endl <<
+			"        d$b" << std::endl <<
+			"      .d\\$$b." << std::endl <<
+			"    .d$i$$\\$$b." << std::endl <<
+			"       d$$@b" << std::endl <<
+			"      d\\$$$ib" << std::endl <<
+			"    .d$$$\\$$$b" << std::endl <<
+			"  .d$$@$$$$\\$$ib." << std::endl <<
+			"      d$$i$$b" << std::endl <<
+			"     d\\$$$$@$b" << std::endl <<
+			"  .d$@$$\\$$$$$@b." << std::endl <<
+			".d$$$$i$$$\\$$$$$$b." << std::endl <<
+			"        ###" << std::endl <<
+			"        ###" << std::endl <<
+			"        ###" << std::endl <<
+		std::endl;
+		}
+		out.close();
 }
 

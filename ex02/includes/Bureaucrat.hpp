@@ -1,7 +1,10 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
-#include <string>
 #include <iostream>
+#include <exception>
+#include <string>
+#include <fstream>
+#include <cstdlib>
 
 class AForm;
 
@@ -30,7 +33,7 @@ public:
     void upGrade();
     void downGrade();
 
-    void signForm(Form& form);
+    void signForm(AForm& form);
 };
 
 std::ostream& operator<<(std::ostream& COUT, const Bureaucrat& object);

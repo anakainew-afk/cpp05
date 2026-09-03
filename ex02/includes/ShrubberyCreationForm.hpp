@@ -1,22 +1,14 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 #define SHRUBBERYCREATIONFORM_HPP
-#include "RobotomyRequestForm.hpp"
+#include "AForm.hpp"
 
-class ShrubberyCreationForm{
+class ShrubberyCreationForm : public AForm {
+protected:
+    virtual void executeAction() const;
 private:
-    const int _grade_sign;
-    const int _grade_exec;
+    const std::string _target;
 public:
-    class GradeTooHighException : public std::exception{
-    public:
-        virtual const char* what() const throw();
-    };
-    class GradeTooLowException : public std::exception{
-    public:
-        virtual const char* what() const throw();
-    };
-    
-    ShrubberyCreationForm(std::string target);
+    ShrubberyCreationForm(const std::string& target);
     ShrubberyCreationForm(const ShrubberyCreationForm& src);
     ShrubberyCreationForm& operator=(const ShrubberyCreationForm& src);
     ~ShrubberyCreationForm();

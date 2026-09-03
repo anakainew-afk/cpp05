@@ -2,7 +2,10 @@
 #define AFORM_HPP
 #include "Bureaucrat.hpp"
 
-class Form{
+class AForm{
+protected:
+	virtual void executeAction() const = 0;
+	AForm(std::string name, int gradeExecute, int gradeSign);
 private:
     const std::string _Name;
     bool _signed;
@@ -17,11 +20,10 @@ public:
     public:
         virtual const char* what() const throw();
     };
-
-    Form(const std::string name, const int sign, const int exec);
-    Form(const Form& src);
-    Form& operator=(const Form& src);
-    ~Form();
+    
+    AForm(const AForm& src);
+    AForm& operator=(const AForm& src);
+    virtual ~AForm();
 
     int getGradeSign() const;
     int getGradeExec() const;
@@ -31,6 +33,6 @@ public:
     void beSigned(const Bureaucrat& bur);
 };
 
-std::ostream& operator<<(std::ostream& COUT, const Form& object);
+std::ostream& operator<<(std::ostream& COUT, const AForm& object);
 
 #endif
