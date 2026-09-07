@@ -2,23 +2,17 @@
 #define PRESIDENTIALPARDONFORM_HPP
 #include "AForm.hpp"
 
-class PresidentialPardonForm{
+class PresidentialPardonForm : public AForm {
+protected:
+    void executeAction() const;
 private:
-    const int _grade_sign;
-    const int _grade_exec;
+    const std::string _target;
 public:
-    class GradeTooHighException : public std::exception{
-    public:
-        virtual const char* what() const throw();
-    };
-    class GradeTooLowException : public std::exception{
-    public:
-        virtual const char* what() const throw();
-    };
-    
-    PresidentialPardonForm(std::string target);
+    PresidentialPardonForm(const std::string& target);
     PresidentialPardonForm(const PresidentialPardonForm& src);
     PresidentialPardonForm& operator=(const PresidentialPardonForm& src);
     ~PresidentialPardonForm();
+
+    std::string getTarget() const;
 };
 #endif

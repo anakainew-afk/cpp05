@@ -5,6 +5,8 @@
 #include <string>
 #include <fstream>
 #include <cstdlib>
+#include <ctime> 
+#include <stdexcept>
 
 class AForm;
 
@@ -34,6 +36,7 @@ public:
     void downGrade();
 
     void signForm(AForm& form);
+    void executeForm(AForm const & form) const;
 };
 
 std::ostream& operator<<(std::ostream& COUT, const Bureaucrat& object);

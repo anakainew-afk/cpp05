@@ -26,6 +26,14 @@ void AForm::beSigned(const Bureaucrat& bur){
     _signed = true;
 }
 
+void AForm::execute(const Bureaucrat& executor) const{
+	if (!isSigned())
+		throw AForm::SignExecption();
+	if (executor.getGrade() > _grade_exec)
+		throw AForm::GradeTooLowException();
+    executeAction();
+}
+
 std::string AForm::getName() const{
     return (this->_Name);
 }
@@ -42,12 +50,20 @@ bool AForm::getSigned() const{
     return (this->_signed);
 }
 
+bool AForm::isSigned() const{
+	return (_signed);
+}
+
 const char *AForm::GradeTooHighException:: what() const throw(){
     return "[AForm: Grade is too high]";
 }
 
 const char *AForm::GradeTooLowException::what() const throw(){
     return "[AForm: Grade is too low]";
+}
+
+const char *AForm::SignExecption::what() const throw(){
+    return "[_signed: Not signed]";
 }
 
 std::ostream& operator<<(std::ostream& COUT, const AForm& object){

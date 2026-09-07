@@ -5,7 +5,7 @@
 class AForm{
 protected:
 	virtual void executeAction() const = 0;
-	AForm(std::string name, int gradeExecute, int gradeSign);
+	AForm(const std::string name, const int sign, const int exec);
 private:
     const std::string _Name;
     bool _signed;
@@ -20,6 +20,11 @@ public:
     public:
         virtual const char* what() const throw();
     };
+
+    class SignExecption : public std::exception{
+    public:
+        virtual const char* what() const throw();
+    };
     
     AForm(const AForm& src);
     AForm& operator=(const AForm& src);
@@ -30,6 +35,8 @@ public:
     bool getSigned() const;
     std::string getName() const;
 
+    bool isSigned() const;
+    void execute(Bureaucrat const &executor) const;
     void beSigned(const Bureaucrat& bur);
 };
 

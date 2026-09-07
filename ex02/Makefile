@@ -1,10 +1,10 @@
 NAME = 02
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3 -std=c++98
+CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 
 SRCS = srcs/main.cpp \
 	srcs/Bureaucrat.cpp \
-	srcs/Form.cpp \
+	srcs/AForm.cpp \
 	srcs/ShrubberyCreationForm.cpp \
 	srcs/RobotomyRequestForm.cpp \
 	srcs/PresidentialPardonForm.cpp \

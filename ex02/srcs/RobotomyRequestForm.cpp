@@ -1,24 +1,31 @@
 #include "../includes/ShrubberyCreationForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target){
-    if (_grade_sign < 1 || _grade_exec < 1)
-        throw RobotomyRequestForm::GradeTooHighException();
-    if (_grade_sign > 72 || _grade_exec > 45)
-        throw RobotomyRequestForm::GradeTooLowException();
-}
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("RobotomyRequestForm", 72, 45), _target(target){}
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& src) : _grade_sign(src._grade_sign), _grade_exec(src._grade_exec){}
 
-RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& src){
-    return *this;
-}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& src) : AForm(src), _target(src._target){}
+
+// RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& src){
+//     return *this;
+// }
 
 RobotomyRequestForm::~RobotomyRequestForm(){}
 
-const char *RobotomyRequestForm::GradeTooHighException:: what() const throw(){
-    return "[RobotomyRequestForm: Grade is too high]";
+void RobotomyRequestForm::executeAction() const{
+    std::srand(static_cast<unsigned int>(std::time(NULL)));
+    
+    std::cout << "drilling..." << '\n'
+            << "drilling..." << '\n'
+            << "drilling..." << std::endl;
+    
+    if (std::rand() % 2 == 0){
+        std::cout << _target << " has been robotomized successfully" << std::endl;
+        return ;
+    }
+    else
+        std::cout << "The robotomization of " << _target << " has failed" << std::endl;
 }
 
-const char *RobotomyRequestForm::GradeTooLowException::what() const throw(){
-    return "[RobotomyRequestForm: Grade is too low]";
+std::string RobotomyRequestForm::getTarget() const{
+    return (_target);
 }

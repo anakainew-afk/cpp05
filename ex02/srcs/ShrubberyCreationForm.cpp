@@ -1,21 +1,23 @@
 #include "../includes/ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("ShrubberyCreationForm", 137, 145), _target(target){}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("ShrubberyCreationForm", 145, 137), _target(target){}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src) : AForm(src), _target(src._target){}
 
-ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& src){
-    return *this;
-}
+// ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& src){
+//     return *this;
+// }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){}
 
-void	ShrubberyCreationForm::executeAction() const
+void ShrubberyCreationForm::executeAction() const
 {
-	std::fstream	out(this->getName().append("_shrubbery").c_str());
-	for (int i = 0; i < 5; i++)
+	std::ofstream file(this->getName().append("_shrubbery").c_str());
+	if (!file.is_open())
+		throw std::runtime_error("Failed to open file");
+	for (int i = 0; i < 1; i++)
 		{
-			out <<
+			file <<
 			"         v" << std::endl <<
 			"        >X<" << std::endl <<
 			"         A" << std::endl <<
@@ -35,6 +37,10 @@ void	ShrubberyCreationForm::executeAction() const
 			"        ###" << std::endl <<
 		std::endl;
 		}
-		out.close();
+		file.close();
+}
+
+std::string ShrubberyCreationForm::getTarget() const{
+	return (_target);
 }
 
