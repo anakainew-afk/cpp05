@@ -1,6 +1,7 @@
 #include "../includes/ShrubberyCreationForm.hpp"
 
-int	main(void){
+int	main(){
+    
 	std::cout << "===== CREATION DES BUREAUCRATS =====" << std::endl;
     Bureaucrat boss("Boss", 1);
     Bureaucrat mid("Mid", 50);

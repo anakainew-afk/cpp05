@@ -10,13 +10,11 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& src) :
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){}
 
-void ShrubberyCreationForm::executeAction() const
-{
+void ShrubberyCreationForm::executeAction() const{
 	std::ofstream file(this->getName().append("_shrubbery").c_str());
 	if (!file.is_open())
 		throw std::runtime_error("Failed to open file");
-	for (int i = 0; i < 1; i++)
-		{
+	for (int i = 0; i < 1; i++){
 			file <<
 			"         v" << std::endl <<
 			"        >X<" << std::endl <<
