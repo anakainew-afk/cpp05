@@ -6,6 +6,11 @@ class AForm;
 
 class Intern{
 public:
+    class FormNotFoundException : public std::exception{
+    public:
+        virtual const char* what() const throw();
+    };
+    
     Intern();
     Intern(const Intern& src);
     // Intern& operator=(const Intern& src);

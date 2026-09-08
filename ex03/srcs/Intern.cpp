@@ -30,9 +30,12 @@ AForm* Intern::makeForm(const std::string nameForm, const std::string nameTarget
             obj = new PresidentialPardonForm(nameTarget);
             break;
         default:
-            std::cout << "The form does not exist" << std::endl;
-            return NULL;
+            throw Intern::FormNotFoundException();
     }
     std::cout << "Intern creates " << nameForm << std::endl;
     return obj;
+}
+
+const char *Intern::FormNotFoundException:: what() const throw(){
+    return "[Intern: The form does not exist]";
 }
