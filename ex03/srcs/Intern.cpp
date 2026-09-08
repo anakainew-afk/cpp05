@@ -2,9 +2,9 @@
 
 Intern::Intern(){}
 
-Intern::Intern(const Intern& src){
-    *this = src;
-}
+// Intern::Intern(const Intern& src){
+//     *this = src;
+// }
 
 // Intern& Intern::operator=(const Intern& src){
 //     return *this;
